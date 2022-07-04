@@ -1,0 +1,23 @@
+body {
+    overflow-x: hidden;
+}
+#rng {
+    position: fixed;
+    left: 80%;
+    top: 50%;
+    min-width: 100px;
+    min-height: 100px;
+    background-color: coral;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    aspect-ratio: 1;
+}
+
+#rng p {
+    margin: 0;
+    padding: 0;
+}

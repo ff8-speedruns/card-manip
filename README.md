@@ -1,5 +1,5 @@
 # Card RNG Manip Tool
-A webpage to keep track of early game RNG events to help with Zell card.
+A webpage to keep track of early game RNG events to help with Quistis/Zell card.
 
 **Not currently functional**
 

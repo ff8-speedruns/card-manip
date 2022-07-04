@@ -31,7 +31,7 @@ function init(settings) {
             let categoryLabel = document.createElement('h5');
             categoryLabel.classList.add('mt-4');
             categoryLabel.innerHTML = category.label;
-            console.warn(category.label);
+
             container.appendChild(categoryLabel);
 
             // The element

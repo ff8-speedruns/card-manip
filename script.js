@@ -1,61 +1,72 @@
-import settings from './json/test.json' assert {type: 'json'};
+import defaultSettings from './json/test.json' assert {type: 'json'};
 
-let baseRng = {};
+let baseRng;
 
-settings.forEach((node) => {
-    // Begin building each section
+function init(settings) {
+    baseRng = {};
 
-    // Container
-    let container = document.createElement('div');
-    let title = document.createElement('h2');
-    title.innerHTML = node.label;
-    container.appendChild(title);
+    let mainContainer = document.getElementById('content');
+    mainContainer.innerHTML = "";
 
-    // Base RNG
-    if (!node.hasOwnProperty('baseCountPage')) {
-        node.baseCountPage = node.label;
-        baseRng[node.label] = parseInt(node.baseValue);
-    }
+    settings.forEach((node) => {
+        // Begin building each section
 
-    // Options
-    node.categories.forEach((category) => {
-        let categoryLabel = document.createElement('h5');
-        categoryLabel.innerHTML = category.label;
-        console.warn(category.label);
-        container.appendChild(categoryLabel);
+        // Container
+        let container = document.createElement('div');
+        container.classList.add('col-12');
 
-        // The element
-        category.subCategories.forEach((subCategory) => {
-            if (subCategory.type.length == 0)
-                return;
-            let times = subCategory.times || 1;
+        let title = document.createElement('h2');
+        title.classList.add('display-5', 'lh-1', 'mb-3');
+        title.innerHTML = node.label;
+        container.appendChild(title);
 
-            let holder = document.createElement('div');
+        // Base RNG
+        if (!node.hasOwnProperty('baseCountPage')) {
+            node.baseCountPage = node.label;
+            baseRng[node.label] = parseInt(node.baseValue);
+        }
 
-            if (times > 1) {
-                holder.classList.add('row');
-            }
+        // Options
+        node.categories.forEach((category) => {
+            let categoryLabel = document.createElement('h5');
+            categoryLabel.classList.add('mt-4');
+            categoryLabel.innerHTML = category.label;
+            console.warn(category.label);
+            container.appendChild(categoryLabel);
 
-            // Loop for however many times this subcategory is repeated
-            for (let i = 0; i < times; i++) {
-                // Create HTML element
-                let element = CreateElement(subCategory.type, subCategory.value, node.baseCountPage, subCategory.label);
+            // The element
+            category.subCategories.forEach((subCategory) => {
+                if (subCategory.type.length == 0)
+                    return;
+                let times = subCategory.times || 1;
 
-                // Add the element to our container.
-                holder.appendChild(element);
-            }
-            container.appendChild(holder);
-        });
-        document.body.appendChild(container);
-    })
+                let holder = document.createElement('div');
 
-    // Put it all together
-    console.log(`Initialized. Base RNG = ${baseRng}`);
-});
+                if (times > 1) {
+                    holder.classList.add('row');
+                }
 
-console.log(baseRng);
+                // Loop for however many times this subcategory is repeated
+                for (let i = 0; i < times; i++) {
+                    // Create HTML element
+                    let element = CreateElement(subCategory.type, subCategory.value, node.baseCountPage, subCategory.label);
 
-// Layout creation help
+                    // Add the element to our container.
+                    holder.appendChild(element);
+                }
+                container.appendChild(holder);
+            });
+
+            // Append to DOM
+            mainContainer.appendChild(container);
+        })
+    });
+}
+
+/********************************************/
+/*********** Layout creation help ***********/
+/********************************************/
+
 function CreateElement(type, data, rngName, label = "") {
     switch (type) {
         case 'buttons':
@@ -208,7 +219,10 @@ function CalculateRng() {
     }
 }
 
-// Helper functions
+/********************************************/
+/************* Helper functions *************/
+/********************************************/
+
 function makeid(length) {
     // https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
     var result = '';
@@ -221,7 +235,39 @@ function makeid(length) {
     return result;
 }
 
+// Read uploaded json file
+function onFileReaderLoad(event) {
+    var obj = JSON.parse(event.target.result);
+    Reset(obj);
+}
+
+function Reset(settings) {
+    init(settings);
+    CalculateRng();
+}
+
+/********************************************/
+/************* Event listeners **************/
+/********************************************/
+
+// Check for changes
 window.addEventListener('input', function (evt) {
     CalculateRng();
 });
-CalculateRng();
+
+// File upload
+const fileSelector = document.getElementById('file-selector');
+fileSelector.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    let reader = new FileReader();
+
+    reader.onload = onFileReaderLoad;
+    reader.readAsText(file);
+
+});
+
+/********************************************/
+/************* Let's get it on **************/
+/********************************************/
+
+Reset(defaultSettings);

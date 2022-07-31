@@ -5,20 +5,26 @@ let baseRng;
 function init(settings) {
     baseRng = {};
 
-    let mainContainer = document.getElementById('content');
-    mainContainer.innerHTML = "";
+    let wrapper = document.getElementById('content');
+    wrapper.innerHTML = "";
+    wrapper.appendChild(CreateTabs(settings));
 
-    settings.forEach((node) => {
+    let mainContainer = document.createElement('div');
+    mainContainer.classList.add('tab-content');
+
+    for(let i = 0; i < settings.length; i++) {
         // Begin building each section
-
+        let node = settings[i];
+        let nospaces = node.label.replace(/[^a-zA-Z]/g, "-");
+        
         // Container
         let container = document.createElement('div');
-        container.classList.add('col-12');
-
-        let title = document.createElement('h2');
-        title.classList.add('display-5', 'lh-1', 'mb-3');
-        title.innerHTML = node.label;
-        container.appendChild(title);
+        container.classList.add('tab-pane');
+        if(i == 0) container.classList.add('show', 'active');
+        container.id = nospaces;
+        container.setAttribute('role', 'tabpanel');
+        container.setAttribute('aria-labelledby', 'nav-home-tab');
+        container.setAttribute('tabindex', '0');
 
         // Base RNG
         if (!node.hasOwnProperty('baseCountPage')) {
@@ -59,16 +65,43 @@ function init(settings) {
 
             // Append to DOM
             mainContainer.appendChild(container);
+            wrapper.appendChild(mainContainer);
         })
-    });
+    };
 }
 
 /********************************************/
 /*********** Layout creation help ***********/
 /********************************************/
 
+function CreateTabs(data) {
+    let container = document.createElement('div');
+    container.classList.add('nav', 'nav-tabs');
+    container.setAttribute('role', 'tablist');
+
+    for(let i = 0; i < data.length; i++) {
+        let nospaces = data[i].label.replace(/[^a-zA-Z]/g, "-");
+
+        let button = document.createElement('button');
+
+        button.classList.add('nav-link');
+        if(i == 0) button.classList.add('active');
+
+        button.setAttribute('data-bs-toggle', 'tab');
+        button.setAttribute('data-bs-target', `#${nospaces}`);
+        button.setAttribute('role', 'tab');
+        button.setAttribute('aria-controls', nospaces);
+        button.setAttribute('aria-selected', (i == 0));
+        button.innerText = data[i].label;
+
+        container.appendChild(button);
+    }
+
+    return container;
+}
+
 function CreateElement(type, data, rngName, label = "") {
-    switch (type) {
+    switch (type.toLowerCase()) {
         case 'buttons':
             return CreateButtons(data, label, rngName);
             break;

@@ -1,0 +1,74 @@
+{
+    "fc01": {
+        "name": "Trepe Groupie #1",
+        "rares": [
+            103
+        ],
+        "rare_limit": 30,
+        "levels": [
+            2,
+            5
+        ]
+    },
+    "fc02": {
+        "name": "Trepe Groupie #2",
+        "rares": [
+            103
+        ],
+        "rare_limit": 20,
+        "levels": [
+            1,
+            3,
+            5
+        ]
+    },
+    "fc03": {
+        "name": "Trepe Groupie #3",
+        "rares": [
+            103
+        ],
+        "rare_limit": 10,
+        "levels": [
+            1,
+            2,
+            4,
+            5
+        ]
+    },
+    "zellmama": {
+        "name": "Ma Dincht",
+        "rares": [
+            105
+        ],
+        "rare_limit": 10,
+        "levels": [
+            1,
+            2,
+            4,
+            5
+        ]
+    },
+    "running_boy1": {
+        "name": "Running Boy (DISC 1)",
+        "rares": [
+            80
+        ],
+        "rare_limit": 20,
+        "levels": [
+            1,
+            2,
+            3
+        ]
+    },
+    "watts": {
+        "name": "Watts",
+        "rares": [
+            77
+        ],
+        "rare_limit": 30,
+        "levels": [
+            1,
+            4
+        ]
+    }
+}

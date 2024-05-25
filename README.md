@@ -3,7 +3,7 @@ A webpage to keep track of early game RNG events to help with Quistis/Zell card.
 
 **Not currently functional**
 
-[Access the live tool](https://galbadia.garden/card-manip)
+[Access the live tool](https://galbadia.garden/cards)
 
 [All tools](https://galbadia.garden)
 

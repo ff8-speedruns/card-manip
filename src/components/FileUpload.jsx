@@ -46,10 +46,10 @@ export function FileUpload(props) {
 
                 <div>
                     <Text size="xl" inline>
-                        Drag images here or click to select files
+                        Drag your JSON file here or click to select
                     </Text>
                     <Text size="sm" color="dimmed" inline mt={7}>
-                        Attach as many files as you like, each file should not exceed 5mb
+                        Blah blah blah bibibbababababaobaobaobobo
                     </Text>
                 </div>
             </Group>

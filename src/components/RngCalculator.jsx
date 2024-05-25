@@ -1,4 +1,4 @@
-import { Group, Text, useMantineTheme, rem, Tabs, Checkbox, Radio, Select } from '@mantine/core';
+import { Group, Text, useMantineTheme, rem, Tabs, Title, Checkbox, Radio, Select } from '@mantine/core';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { IconPhoto, IconMessageCircle, IconSettings } from '@tabler/icons-react';
@@ -21,7 +21,7 @@ export function RngCalculator(props) {
 
     const ProcessCategory = (category, topLabel) => {
         return (<>
-            <strong>{category.label}</strong><br />
+            <Title order={2} my="md">{category.label}</Title>
             {Object.prototype.hasOwnProperty.call(category, 'subCategories') ? category.subCategories.map((subcategory) => ProcessSubCategory(subcategory, category.baseCountPage || "", category.label, topLabel)) : ""}
         </>)
     }
@@ -42,7 +42,7 @@ export function RngCalculator(props) {
     }
 
     const CreateButtons = (data, label, catLabel) => {
-        let rngName = `${catLabel}-${label}`
+        let rngName = btoa(`${catLabel}-${label}`)
 
         return (
             <Checkbox.Group
@@ -59,7 +59,7 @@ export function RngCalculator(props) {
     }
 
     const CreateRadioButtons = (data, label, catLabel) => {
-        let rngName = `${catLabel}-${label}`
+        let rngName = btoa(`${catLabel}-${label}`)
         return (
             <Radio.Group
                 label={label}
@@ -75,7 +75,7 @@ export function RngCalculator(props) {
     }
 
     const CreateList = (data, label, catLabel, times) => {
-        let rngName = `${catLabel}-${label}`
+        let rngName = btoa(`${catLabel}-${label}`)
         let elements = [];
         for (let i = 1; i < times; i++) {
             let rngNameTimes = `${rngName}-${i}`;

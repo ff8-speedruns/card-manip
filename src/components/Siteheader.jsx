@@ -17,7 +17,7 @@ export default function Siteheader() {
       >
         <IconArrowNarrowLeft size="1.1rem" />
       </ActionIcon>
-      <Title order={1}>FF8 Q+Z Card</Title>
+      <Title order={1}>Card Manip</Title>
       <ActionIcon
         size="lg"
         variant="outline"

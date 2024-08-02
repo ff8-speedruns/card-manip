@@ -3,9 +3,9 @@ A webpage to keep track of early game RNG events to help with Quistis/Zell card.
 
 **Not currently functional**
 
-[Access the live tool](https://galbadia.garden/cards)
+[Access the live tool](https://tools.ff8.wiki/cards)
 
-[All tools](https://galbadia.garden)
+[All tools](https://tools.ff8.wiki)
 
 ## Acknowledgements
 This tool was made possible by the following people's dedicated research:

@@ -13,7 +13,7 @@ export default function Siteheader() {
         color={dark ? 'yellow' : 'blue'}
         title="Back to garden"
         component="a"
-        href="https://galbadia.garden"
+        href="/"
       >
         <IconArrowNarrowLeft size="1.1rem" />
       </ActionIcon>
